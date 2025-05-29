@@ -406,8 +406,8 @@ WHERE		month(first_contact_date) = 2 AND year(first_contact_date) = 2018;
 SELECT		origin, COUNT(*) AS lead_count
 FROM		leads_qualified
 WHERE		month(first_contact_date) > 3 AND
-			year(first_contact_date) >= 2018 AND 
-			origin IS NOT NULL
+		year(first_contact_date) >= 2018 AND 
+		origin IS NOT NULL
 GROUP BY	origin
 ORDER BY	lead_count DESC;
 
@@ -455,7 +455,7 @@ FROM		order_items;
 SELECT		seller_id, AVG(price) AS avg_price
 FROM		order_items
 GROUP BY	seller_id
-ORDER BY	avg_price	DESC;
+ORDER BY	avg_price DESC;
 
 
 -- Q5. List order items where shipping limit date is null.
@@ -682,15 +682,15 @@ ORDER BY	creation_year;
 SELECT		AVG(review_score) AS avg_review_score
 FROM		order_reviews
 WHERE		review_comment_title IS NULL AND
-			review_creation_date LIKE '2018-03%';
+		review_creation_date LIKE '2018-03%';
 
 
 -- Q7. Count reviews where with no review comment title and no review comment message that were answered between 9AM and 9PM.
 SELECT		COUNT(*) AS review_count
 FROM		order_reviews
 WHERE		review_comment_title IS NULL AND
-			review_comment_message IS NULL AND
-            hour(review_answer_timestamp) BETWEEN 9 AND 21;
+		review_comment_message IS NULL AND
+            	hour(review_answer_timestamp) BETWEEN 9 AND 21;
             
             
 -- Q8. Count reviews that were answered within 6 hours.
@@ -718,14 +718,14 @@ LIMIT		1 OFFSET 1;
 SELECT		COUNT(*) AS review_count
 FROM		order_reviews
 WHERE		review_comment_title IS NULL AND
-			review_score IN (2, 4);
+		review_score IN (2, 4);
 
 
 -- Q12. List 5 star reviews answered in 2017.
 SELECT		*
 FROM		order_reviews
 WHERE		review_score = 5 AND
-			year(review_answer_timestamp) = 2017;
+		year(review_answer_timestamp) = 2017;
             
             
 -- Q13. Count 2 star reviews answered in April by each year.
@@ -771,7 +771,7 @@ ORDER BY	order_count DESC;
 
 -- Q3. Find earliest and latest order purchases that were canceled.
 SELECT		MIN(order_purchase_timestamp) AS min_order_purchase_timestamp,
-			MAX(order_purchase_timestamp) AS max_order_purchase_timestamp
+		MAX(order_purchase_timestamp) AS max_order_purchase_timestamp
 FROM		orders
 WHERE		order_status = 'canceled';
 
@@ -802,8 +802,8 @@ WHERE		order_purchase_timestamp LIKE '2018-%';
 SELECT		*
 FROM		orders
 WHERE		order_delivered_customer_date LIKE '2018-03-%' OR
-			order_delivered_customer_date LIKE '2018-04-%' OR
-            order_delivered_customer_date LIKE '2018-05-%'
+		order_delivered_customer_date LIKE '2018-04-%' OR
+            	order_delivered_customer_date LIKE '2018-05-%'
 ORDER BY	order_delivered_customer_date;
 
 
@@ -901,18 +901,18 @@ FROM 		product_category_name_translation;
 SELECT		*
 FROM 		product_category_name_translation
 WHERE		(product_category_name_english LIKE '%sport%' OR product_category_name_english LIKE '%art%') AND 
-            NOT product_category_name_english LIKE '%party%';
+            	NOT product_category_name_english LIKE '%party%';
 
 
 -- Q7. Find the most characters used for the categories.
 SELECT		MAX(length(product_category_name)) AS max_length_brazilian,
-			MAX(length(product_category_name_english)) AS max_length_english
+		MAX(length(product_category_name_english)) AS max_length_english
 FROM 		product_category_name_translation;
             
             
 -- Q8. Find the number of words used for each of the categories and their translations.
 SELECT		length(product_category_name) - length(replace(product_category_name, '_', '')) + 1 AS words_count_brazilian,
-			length(product_category_name_english) - length(replace(product_category_name_english, '_', '')) + 1 AS words_count_english
+		length(product_category_name_english) - length(replace(product_category_name_english, '_', '')) + 1 AS words_count_english
 FROM 		product_category_name_translation;
 
 
@@ -990,8 +990,8 @@ ORDER BY	avg_product_description_lenght DESC;
 
 -- Q5. Find average dimentions for pcs.
 SELECT		AVG(product_length_cm) AS avg_product_length_cm,
-			AVG(product_height_cm) AS avg_product_height_cm,
-            AVG(product_width_cm) AS avg_product_width_cm
+		AVG(product_height_cm) AS avg_product_height_cm,
+            	AVG(product_width_cm) AS avg_product_width_cm
 FROM		products
 WHERE		product_category_name = 'pcs';
 
@@ -1005,14 +1005,14 @@ ORDER BY	product_photos_qty;
 
 
 -- Q7. Show the product id and also as: 'art' all products that are part of arts
--- 										'sports' all products that are part of sports
--- 										'fashion' all products that are part of fashion
--- 										NULL that are in neither of the three catrgories
+--     'sports' all products that are part of sports
+--     'fashion' all products that are part of fashion
+-- 	NULL that are in neither of the three catrgories
 SELECT		product_id, product_category_name,
-			CASE	WHEN product_category_name LIKE '%art%' AND NOT product_category_name LIKE '%party%' THEN 'art'
-					WHEN product_category_name LIKE '%sport%' THEN 'sports'
-                    WHEN product_category_name LIKE '%fashion%' THEN 'fashion'
-                    ELSE NULL
+		CASE	WHEN product_category_name LIKE '%art%' AND NOT product_category_name LIKE '%party%' THEN 'art'
+			WHEN product_category_name LIKE '%sport%' THEN 'sports'
+                        WHEN product_category_name LIKE '%fashion%' THEN 'fashion'
+                    	ELSE NULL
 			END AS art_sports_fashion
 FROM		products;
 
@@ -1025,7 +1025,7 @@ WHERE		product_length_cm * product_height_cm > power(100,2);
 
 -- Q9. Show top 5 product category names that have on average volume more than 50m^3.
 SELECT		product_category_name, 
-			AVG(product_length_cm * product_height_cm * product_width_cm) AS avg_volume_cm
+		AVG(product_length_cm * product_height_cm * product_width_cm) AS avg_volume_cm
 FROM		products
 GROUP BY	product_category_name
 HAVING		avg_volume_cm > 50 * power(100,3)
@@ -1043,7 +1043,7 @@ LIMIT		2;
 
 -- Q11. Show the 10 smallest products and their categories, in m.
 SELECT		product_id, product_category_name,
-			(product_length_cm * product_height_cm * product_width_cm) / power(10,6) AS product_volume_m
+		(product_length_cm * product_height_cm * product_width_cm) / power(10,6) AS product_volume_m
 FROM		products
 WHERE		(product_length_cm * product_height_cm * product_width_cm) / 10 IS NOT NULL
 ORDER BY	product_volume_m
@@ -1052,7 +1052,7 @@ LIMIT		10;
 
 -- Q12. Show minimum and maximum weight for baby products with more than 4 pictures per product in kg.
 SELECT		MIN(product_weight_g) / 1000 AS min_product_weight_g,
-			MAX(product_weight_g) / 1000 AS max_product_weight_g
+		MAX(product_weight_g) / 1000 AS max_product_weight_g
 FROM		products
 WHERE		product_category_name = 'bebes' AND product_photos_qty > 4;
 
@@ -1061,7 +1061,7 @@ WHERE		product_category_name = 'bebes' AND product_photos_qty > 4;
 SELECT		AVG(product_weight_g) AS avg_product_weight_g
 FROM		products
 WHERE		product_category_name LIKE '%fashion%' AND
-			product_description_lenght BETWEEN	50 AND 100;
+		product_description_lenght BETWEEN	50 AND 100;
 
 
 -- Q14. Show top 10 heaviest sports products.
@@ -1076,7 +1076,7 @@ LIMIT		10;
 SELECT		product_category_name, COUNT(*) AS product_count
 FROM		products
 WHERE		product_category_name LIKE '%art%' AND
-			NOT product_category_name LIKE '%party%'
+		NOT product_category_name LIKE '%party%'
 GROUP BY	product_category_name
 ORDER BY	product_count DESC;
 
@@ -1123,7 +1123,7 @@ WHERE		seller_state = 'RJ' AND NOT seller_city = 'rio de janeiro';
 
 -- Q6. Count the sellers by the first digit of their seller zip code prefix.
 SELECT		seller_zip_code_prefix DIV 10000 AS first_digit,
-			COUNT(*) AS seller_count
+		COUNT(*) AS seller_count
 FROM		sellers
 GROUP BY	first_digit
 ORDER BY	first_digit;
@@ -1131,7 +1131,7 @@ ORDER BY	first_digit;
 
 -- Q7. Count the distinct states that their seller zip code prefix starts with two.
 SELECT		seller_zip_code_prefix DIV 10000 AS first_digit,
-			COUNT(DISTINCT seller_state) AS seller_state_count
+		COUNT(DISTINCT seller_state) AS seller_state_count
 FROM		sellers
 GROUP BY	first_digit
 HAVING		first_digit = 2;
@@ -1141,7 +1141,7 @@ HAVING		first_digit = 2;
 SELECT		COUNT(seller_state) AS seller_count
 FROM		sellers
 WHERE		seller_state = 'SP' AND
-			substr(seller_id, length(seller_id), length(seller_id)) = '0';
+		substr(seller_id, length(seller_id), length(seller_id)) = '0';
 
 
 -- Q9. Find the number of sellers in the city that is last alphabetically.
@@ -1179,14 +1179,14 @@ LIMIT		10;
 SELECT		COUNT(*) AS seller_count
 FROM		sellers
 WHERE		seller_state = 'SP' AND
-			seller_zip_code_prefix MOD 10  = 2;
+		seller_zip_code_prefix MOD 10  = 2;
 
 
 -- Q14. Show sellers in Tupa city that have 2 in their id
 SELECT		*
 FROM		sellers
 WHERE		seller_city = 'tupa' AND
-			seller_id LIKE '%2%'; 
+		seller_id LIKE '%2%'; 
             
             
 -- Q15. Show all info on Sao Paolo sellers that have seller zip code prefix ending in 3, 5 or 9 ordered 
@@ -1194,6 +1194,6 @@ WHERE		seller_city = 'tupa' AND
 SELECT		*
 FROM		sellers
 WHERE		seller_state = 'SP' AND
-			seller_zip_code_prefix MOD 10 IN (3,5,9)
+		seller_zip_code_prefix MOD 10 IN (3,5,9)
 ORDER BY	seller_zip_code_prefix MOD 10, seller_city;
 				
