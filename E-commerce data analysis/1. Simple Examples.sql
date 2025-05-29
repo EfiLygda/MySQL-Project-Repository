@@ -2,7 +2,7 @@
 -- 1.  Simple SQL questions per table (total 165)
 
 --  Includes:
--- 	no joins, no subqueries, just single-table queries using 
+--  no joins, no subqueries, just single-table queries using 
 --  SELECT, WHERE, GROUP BY, HAVING, ORDER BY, and also CASE
 --  MIN, MAX, COUNT, AVG, SUM, MOD, DIV, LENGTH, INSTR, SUBSTR, UPPER, LOWER
 --  with conditions including AND, OR, BETWEEN, IN and null handling.
