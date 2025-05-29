@@ -1,5 +1,5 @@
 
--- 1.  Simple SQL questions per table (total 165)
+-- 1.  Simple MySQL questions per table (total 165)
 
 --  Includes:
 --  no joins, no subqueries, just single-table queries using 
