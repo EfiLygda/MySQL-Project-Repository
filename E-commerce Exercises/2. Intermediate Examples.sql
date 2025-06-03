@@ -121,6 +121,19 @@ ORDER BY	total_credit_card_payments DESC				-- 4. Order by most total credit car
 LIMIT		5;							-- 5. Keep top 5.
 
 
+-- Q8. Get top 5 lead types closed by social media in Sao Paolo state.
+SELECT		lc.lead_type, COUNT(*) AS total_leads_closed		-- 5. Calculate total leads by lead type
+FROM		leads_closed lc						-- 1. Find common leads between the closed and qualified ones
+                INNER JOIN leads_qualified lq				--    in order to find their origin
+                ON lc.mql_id = lq.mql_id
+                LEFT JOIN sellers s					-- 2. Add seller info to get the state
+		ON s.seller_id = lc.seller_id
+WHERE		lq.origin = 'social' AND s.seller_state = 'SP'		-- 3. Filter social media origins and Sao Paolo state 
+GROUP BY	lc.lead_type						-- 4. Group by lead type 
+ORDER BY	total_leads_closed DESC					-- 6. Order by mosto to leasr total leads closed by type
+LIMIT		5;							-- 7. Keep top 5
+
+
 -- Q9. Display customers who have placed orders with at least three different sellers.
 SELECT		c.customer_unique_id, 						
 		COUNT(DISTINCT ot.seller_id) AS total_sellers	-- 4. Calculate number of total distinct sellers by customers
