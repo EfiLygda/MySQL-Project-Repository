@@ -18,7 +18,7 @@ USE e_commerce;
 -- A. Only use JOINs or INNER JOINs (total 15)
 -------------------------------------------------------------------------------------------------------------------------------
 
--- Q1. Find the top 5 customers who spent the most in total across all orders.
+-- Q1. Find the top 5 customers who intended to spent the most in total across all orders.
 SELECT		c.customer_unique_id, 
 		SUM(ot.price + ot.freight_value) AS total_price		-- 4. Sum the total costs by customer
 FROM		orders o						-- 1. Find common orders between orders and order items table 	
