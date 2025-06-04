@@ -2,6 +2,9 @@
 
 Three separate exercise files were created using the Olist E-commerce dataset to provide hands-on practice.
 
+> [!NOTE]
+> The dataset used in this project is not included, but is available at https://www.kaggle.com/datasets/terencicp/e-commerce-dataset-by-olist-as-an-sqlite-database 
+
 ## Project Overview
 
 `1. Simple Examples.sql`: Contains simple MySQL questions per database table (total 165)
@@ -30,3 +33,6 @@ Includes:
 * `NTILE()`
 * Aggregate functions with `OVER()` like `SUM()`, `AVG()`, `COUNT()`, etc.
 
+
+## Status
+> Done
