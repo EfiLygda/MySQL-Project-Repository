@@ -2,6 +2,9 @@
 
 The answers given to the questions (total 12) for the final project of the course are located in the `final_project.sql` file.
 
+> [!NOTE]
+> The dataset used is not included, but it is available via course.
+
 # Project Overview
 
 ## Assignment
