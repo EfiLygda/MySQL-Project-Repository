@@ -9,7 +9,7 @@ It includes real-world datasets and query practices in order to demonstrate and 
   - `E-commerce Exercises`: 3-level exercises using a real-world dataset. 
   - `E-commerce Data Analysis`: Explotation of the sales performance, customer behavior, and delivery logistics of an online marketplace using advanced SQL queries on .
 
-[!NOTE]
+> [!NOTE]
 > The dataset used is not included but is available at [Kaggle](https://www.kaggle.com/datasets/terencicp/e-commerce-dataset-by-olist-as-an-sqlite-database).
 
 
